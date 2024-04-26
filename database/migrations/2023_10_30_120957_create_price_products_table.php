@@ -15,8 +15,13 @@ class CreatePriceProductsTable extends Migration
     {
         Schema::create('price_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('code_product')->references('code')->on('products');
+            
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
+
+            $table->unsignedBigInteger('unit_id');
             $table->foreign('unit_id')->references('id')->on('unit_lists');
+
             $table->float('price', 20, 3)->nullable();
             $table->float('profit', 8, 2)->nullable();
             $table->float('selling_price', 20, 3)->nullable();

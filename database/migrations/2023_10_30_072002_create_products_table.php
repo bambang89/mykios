@@ -16,15 +16,21 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code', 100)->nullable();
-            $table->foreign('type_id')->references('code')->on('type_products');
+            
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')->references('id')->on('type_products');
+
+            $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');
+
             $table->string('name')->nullable();
             $table->string('barcode')->nullable();
             $table->string('desc')->nullable();
-            $table->integer('status', 5)->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
+     
     }
 
     /**
