@@ -2,10 +2,6 @@
 
 @section('title', __('Type Management'))
 
-@section('breadcrumb-links')
-    @include('backend.auth.user.includes.breadcrumb-links')
-@endsection
-
 @section('content')
     <x-backend.card>
         <x-slot name="header">
@@ -13,7 +9,7 @@
         </x-slot>
 
         <x-slot name="body">
-            <!-- <livewire:backend.users-table /> -->
+            <livewire:backend.type-product-table/>
         </x-slot>
     </x-backend.card>
 @endsection
