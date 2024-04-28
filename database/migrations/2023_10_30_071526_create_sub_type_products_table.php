@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeProductsTable extends Migration
+class CreateSubTypeProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateTypeProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_products', function (Blueprint $table) {
+        Schema::create('sub_type_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('type', 100)->nullable()->comment('nama type ex: minuman,makanan,dll');
+            
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')->references('id')->on('type_products');
+
+            $table->char('sub_type', 100)->nullable()->comment('nama type ex: minuman,makanan,dll');
             $table->string('desc')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -29,6 +33,6 @@ class CreateTypeProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_products');
+        Schema::dropIfExists('sub_type_products');
     }
 }

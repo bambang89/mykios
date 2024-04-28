@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeProductsTable extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateTypeProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_products', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->char('type', 100)->nullable()->comment('nama type ex: minuman,makanan,dll');
-            $table->string('desc')->nullable();
+        Schema::create('companies', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone_number')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateTypeProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_products');
+        Schema::dropIfExists('companies');
     }
 }
