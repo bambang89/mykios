@@ -100,7 +100,7 @@
                         :href="route('admin.customer.group.index')"
                         class="c-sidebar-nav-link"
                         :text="__('Grup Pelanggan')"
-                        :active="activeClass(Route::is('admin.customer*'), 'c-active')" />
+                        :active="activeClass(Route::is('admin.customer.group.*'), 'c-active')" />
                 </li>
             </ul>
         </li>
@@ -163,7 +163,7 @@
                         :href="route('admin.type.sub.index')"
                         class="c-sidebar-nav-link"
                         :text="__('Daftar Sub Jenis')"
-                        :active="activeClass(Route::is('admin.type.*'), 'c-active')" />
+                        :active="activeClass(Route::is('admin.type.sub.*'), 'c-active')" />
                 </li>
                 <li class="c-sidebar-nav-item">
                     <x-utils.link
@@ -174,8 +174,6 @@
                 </li>
             </ul>
         </li>
-
-        
 
         @if (
             $logged_in_user->hasAllAccess() ||
