@@ -56,6 +56,7 @@
     52 => 'App\\Providers\\LocaleServiceProvider',
     53 => 'App\\Providers\\ObserverServiceProvider',
     54 => 'App\\Providers\\RouteServiceProvider',
+    55 => 'App\\Providers\\BreadcrumbsServiceProvider',
   ),
   'eager' => 
   array (
@@ -97,6 +98,7 @@
     35 => 'App\\Providers\\LocaleServiceProvider',
     36 => 'App\\Providers\\ObserverServiceProvider',
     37 => 'App\\Providers\\RouteServiceProvider',
+    38 => 'App\\Providers\\BreadcrumbsServiceProvider',
   ),
   'deferred' => 
   array (
