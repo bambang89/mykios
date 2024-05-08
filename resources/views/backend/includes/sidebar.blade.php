@@ -74,7 +74,7 @@
             </ul>
         </li>
 
-        <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.supplier.*') || Route::is('admin.customer.*'), 'c-open c-show') }}">
+        <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.supplier.*') || Route::is('admin.customergroup.*') || Route::is('admin.customer.*'), 'c-open c-show') }}">
             <x-utils.link
                 href="#"
                 icon="c-sidebar-nav-icon cil-people"
@@ -97,10 +97,10 @@
                 </li>
                 <li class="c-sidebar-nav-item">
                     <x-utils.link
-                        :href="route('admin.customer.group.index')"
+                        :href="route('admin.customergroup.index')"
                         class="c-sidebar-nav-link"
                         :text="__('Grup Pelanggan')"
-                        :active="activeClass(Route::is('admin.customer.group.*'), 'c-active')" />
+                        :active="activeClass(Route::is('admin.customergroup.*'), 'c-active')" />
                 </li>
             </ul>
         </li>
@@ -130,7 +130,7 @@
             </ul>
         </li>
 
-        <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.unit.*') || Route::is('admin.brand.*') || Route::is('admin.type.*') || Route::is('admin.warehouse.*'), 'c-open c-show') }}">
+        <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.unit.*') || Route::is('admin.brand.*') || Route::is('admin.type.*') || Route::is('admin.subtype.*') || Route::is('admin.warehouse.*'), 'c-open c-show') }}">
             <x-utils.link
                 href="#"
                 icon="c-sidebar-nav-icon cil-puzzle"
@@ -160,10 +160,10 @@
                 </li>
                 <li class="c-sidebar-nav-item">
                     <x-utils.link
-                        :href="route('admin.type.sub.index')"
+                        :href="route('admin.subtype.index')"
                         class="c-sidebar-nav-link"
                         :text="__('Daftar Sub Jenis')"
-                        :active="activeClass(Route::is('admin.type.sub.*'), 'c-active')" />
+                        :active="activeClass(Route::is('admin.subtype.*'), 'c-active')" />
                 </li>
                 <li class="c-sidebar-nav-item">
                     <x-utils.link

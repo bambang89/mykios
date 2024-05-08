@@ -12,8 +12,17 @@
             @lang('Sub Type Management')
         </x-slot>
 
+        <x-slot name="headerActions">
+            <x-utils.link
+                icon="c-icon cil-plus"
+                class="card-header-action"
+                :href="route('admin.subtype.create')"
+                :text="__('Create Sub Type Items')"
+            />
+        </x-slot>
+
         <x-slot name="body">
-            <!-- <livewire:backend.users-table /> -->
+            <livewire:backend.sub-type-product-table/>
         </x-slot>
     </x-backend.card>
 @endsection

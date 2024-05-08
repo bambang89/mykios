@@ -5,29 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class UnitDerivative extends Model
 {
-    use HasFactory,
-    LogsActivity,
-    SoftDeletes;
+    use HasFactory,LogsActivity;
 
-    /**
+      /**
      * @var string[]
      */
     protected $fillable = [
-        'code',
-        'name',
-        'barcode',
-        'type_id',
-        'brand_id',
         'product_id',
-        'subtype_id',
-        'supplier_id',
-        'shelf',
-        'desc',
-        'status',
+        'stock_derivative',
+    ];
+
+    protected $casts = [
+        'stock_derivative' => 'array',
     ];
 
     /**

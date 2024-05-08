@@ -3,27 +3,19 @@
 namespace App\Http\Livewire\Backend;
 
 use Illuminate\Database\Eloquent\Builder;
-use App\Models\TypeProduct;
+use App\Models\UnitList;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class TypeProductTable extends DataTableComponent
+class UnitListTable extends DataTableComponent
 {
-
     protected $index = 0;
-    
-    public function query(): Builder
-    {
-        return TypeProduct::query();
-    }
 
     public function columns(): array
     {
-
         return [
-            // Column::make('No')->format(fn () => ++$this->index),
             Column::make('No'),
-            Column::make(__('Type'))
+            Column::make(__('Unit Type'))
                 ->sortable(),
             Column::make(__('Description'))
                 ->sortable(),
@@ -31,12 +23,16 @@ class TypeProductTable extends DataTableComponent
         ];
     }
 
+    public function query(): Builder
+    {
+        return UnitList::query();
+    }
+
     /**
      * @return string
      */
     public function rowView(): string
     {
-        return 'backend.type.action';
+        return 'backend.unit.action';
     }
-
 }

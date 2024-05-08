@@ -3,32 +3,31 @@
 namespace App\Http\Livewire\Backend;
 
 use Illuminate\Database\Eloquent\Builder;
-use App\Models\TypeProduct;
+use App\Models\Brand;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class TypeProductTable extends DataTableComponent
+class BrandTable extends DataTableComponent
 {
-
     protected $index = 0;
-    
-    public function query(): Builder
-    {
-        return TypeProduct::query();
-    }
 
     public function columns(): array
     {
-
         return [
-            // Column::make('No')->format(fn () => ++$this->index),
             Column::make('No'),
-            Column::make(__('Type'))
+            Column::make(__('Brand'))
                 ->sortable(),
             Column::make(__('Description'))
                 ->sortable(),
+            Column::make(__('Logo'))
+                ->sortable(),
             Column::make(__('Actions')),
         ];
+    }
+
+    public function query(): Builder
+    {
+        return Brand::query();
     }
 
     /**
@@ -36,7 +35,6 @@ class TypeProductTable extends DataTableComponent
      */
     public function rowView(): string
     {
-        return 'backend.type.action';
+        return 'backend.brand.action';
     }
-
 }

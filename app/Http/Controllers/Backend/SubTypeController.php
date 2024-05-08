@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
+
+use App\Models\TypeProduct;
+use App\Models\SubTypeProduct;
 
 class SubTypeController extends Controller
 {
@@ -26,6 +31,9 @@ class SubTypeController extends Controller
     public function create()
     {
         //
+        $type = TypeProduct::all();
+        return view('backend.type.sub.create')
+            ->withTypeProduct($type);
     }
 
     /**
@@ -34,9 +42,18 @@ class SubTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         //
+        $validator = Validator::make($request->all(), [
+            'type_id' => 'required',
+            'sub_type' => 'required',
+            'desc'  => 'string'
+        ]);
+
+        $subTypeProduct = SubTypeProduct::create($validator->validated());
+
+        return redirect()->route('admin.     .index');
     }
 
     /**
@@ -56,9 +73,13 @@ class SubTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(SubTypeProduct $subtype)
     {
         //
+        $type = TypeProduct::all();
+        return view('backend.type.sub.edit')
+            ->withTypeProduct($type)
+            ->withSubTypeProduct($subtype);
     }
 
     /**
@@ -68,9 +89,18 @@ class SubTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, SubTypeProduct $subtype)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'type_id' => 'required',
+            'sub_type' => 'required',
+            'desc'  => 'string'
+        ]);
+
+        $subtype->update($validator->validated());
+
+        return redirect()->route('admin.subtype.index');
     }
 
     /**

@@ -12,8 +12,17 @@
             @lang('Unit Management')
         </x-slot>
 
+        <x-slot name="headerActions">
+            <x-utils.link
+                icon="c-icon cil-plus"
+                class="card-header-action"
+                :href="route('admin.unit.create')"
+                :text="__('Create Unit Type')"
+            />
+        </x-slot>
+
         <x-slot name="body">
-            <!-- <livewire:backend.users-table /> -->
+            <livewire:backend.unit-list-table />
         </x-slot>
     </x-backend.card>
 @endsection

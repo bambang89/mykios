@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTypeProductsRequest;
+use App\Models\TypeProduct;
 
 class TypeController extends Controller
 {
@@ -22,10 +24,11 @@ class TypeController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */   
     public function create()
     {
         //
+        return view('backend.type.create');
     }
 
     /**
@@ -34,9 +37,12 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTypeProductsRequest $request)
     {
         //
+        $typeproduct = TypeProduct::create($request->validated());
+
+        return redirect()->route('admin.type.index');
     }
 
     /**
@@ -45,9 +51,11 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TypeProduct $type)
     {
         //
+        return view('backend.type.edit')
+            ->withTypeProduct($type);
     }
 
     /**
@@ -56,9 +64,11 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TypeProduct $type)
     {
         //
+        return view('backend.type.edit')
+            ->withTypeProduct($type);
     }
 
     /**
@@ -68,9 +78,12 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTypeProductsRequest $request, TypeProduct $type)
     {
         //
+        $type->update($request->validated());
+
+        return redirect()->route('admin.type.index');
     }
 
     /**
@@ -79,8 +92,10 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TypeProduct $type)
     {
-        //
+        $type->delete();
+
+        return redirect()->route('admin.type.index');
     }
 }

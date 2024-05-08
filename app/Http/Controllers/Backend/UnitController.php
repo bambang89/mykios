@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\UnitList;
 
 class UnitController extends Controller
 {
@@ -26,6 +27,7 @@ class UnitController extends Controller
     public function create()
     {
         //
+        return view('backend.unit.create');
     }
 
     /**
@@ -37,6 +39,9 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         //
+        $unitlist = UnitList::create($request->all());
+
+        return redirect()->route('admin.unit.index');
     }
 
     /**
@@ -45,7 +50,7 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(UnitList $unit)
     {
         //
     }
@@ -56,9 +61,11 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(UnitList $unit)
     {
         //
+        return view('backend.unit.edit')
+            ->withUnitList($unit);
     }
 
     /**
@@ -68,9 +75,12 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, UnitList $unit)
     {
         //
+        $unit->update($request->all());
+
+        return redirect()->route('admin.unit.index');
     }
 
     /**
@@ -79,8 +89,10 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(UnitList $unit)
     {
         //
+        $unit->delete();
+        return redirect()->route('admin.unit.index');
     }
 }
